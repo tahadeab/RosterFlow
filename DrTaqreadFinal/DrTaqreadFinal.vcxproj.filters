@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="HeaderFile">
+      <UniqueIdentifier>{08a11864-1f43-466a-834e-b495e33cbe04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DLinkedList">
+      <UniqueIdentifier>{c2eef057-3fc0-438a-83d3-4967307884b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PQL">
+      <UniqueIdentifier>{8dd188b1-7b56-458b-bfc0-085e4a23d68d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stack">
+      <UniqueIdentifier>{13f6978c-59cb-4cc8-bc38-ad9245bf4f63}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DrTaqreadFinal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>DLinkedList</Filter>
+    </ClCompile>
+    <ClCompile Include="Source1.cpp">
+      <Filter>PQL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source2.cpp">
+      <Filter>Stack</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Declareation.h">
+      <Filter>HeaderFile</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

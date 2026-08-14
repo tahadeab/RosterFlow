@@ -1,0 +1,26 @@
+# CMake build artifacts
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+
+# Visual Studio artifacts
+.vs/
+*.user
+*.suo
+*.vcxproj.user
+x64/
+x86/
+Debug/
+Release/
+*.exe
+*.pdb
+*.ilk
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/

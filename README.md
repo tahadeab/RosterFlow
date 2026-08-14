@@ -1,28 +1,29 @@
 # RosterFlow
 
-**RosterFlow** هو نظام طرفية عملي لإدارة قائمة فريق رياضي، صُمم ليحوّل تطبيق هياكل البيانات التعليمي إلى أداة قابلة للاستخدام في إدارة اللاعبين والاختيارات ذات الأولوية. الاسم المقترح يحافظ على فكرة المشروع الأصلية، لكنه يقدّم هوية تقنية واضحة ومستقلة عن أسماء الملفات القديمة.
+**RosterFlow** is a practical command-line roster management system built with modern C++. It demonstrates how core data structures can support a real team-management workflow instead of remaining isolated classroom examples.
 
-## الفائدة العملية
+## Practical Purpose
 
-يساعد النظام المدرب أو مسؤول الفريق على تسجيل اللاعبين، البحث عن لاعب برقم القميص، حذف السجلات، ترتيب اللاعبين حسب أولوية الاختيار، وتخزين القائمة في ملف CSV يمكن نقله أو تعديله. كما يوضح بصورة عملية كيف تخدم هياكل البيانات تطبيقاً حقيقياً بدلاً من عرضها كأمثلة منفصلة.
+RosterFlow helps a coach or team administrator maintain a player roster, search by shirt number, remove records, update selection priorities, identify the next priority player, undo the latest addition, and persist the roster in a portable CSV file.
 
-## الميزات الرئيسية
+## Features
 
-| الميزة | التطبيق العملي |
+| Feature | Practical use |
 |---|---|
-| إدارة اللاعبين | إضافة، عرض، بحث، حذف وتحديث بيانات اللاعبين |
-| قائمة مترابطة مزدوجة | حفظ ترتيب القائمة والتنقل بين العقد بكفاءة |
-| طابور أولوية | تحديد اللاعب التالي حسب قيمة الأولوية |
-| مكدس العمليات | التراجع عن آخر عملية إضافة |
-| تخزين CSV | حفظ البيانات وإعادة تحميلها بين جلسات التشغيل |
-| تحقق من المدخلات | منع الأرقام المكررة والقيم الأساسية غير الصحيحة |
-| بناء متعدد المنصات | دعم CMake بدلاً من الاعتماد على Visual Studio فقط |
+| Player management | Add, list, search, remove, and update player records |
+| Doubly linked list | Preserve roster order and support linked-node operations |
+| Priority queue | Select the next player according to priority |
+| Action stack | Undo the most recent player addition |
+| CSV persistence | Save and reload roster data between sessions |
+| Input validation | Prevent duplicate numbers and invalid core values |
+| CMake build | Provide a portable build workflow for supported C++ environments |
 
-## البنية الجديدة
+## Project Structure
 
 ```text
 RosterFlow/
 ├── CMakeLists.txt
+├── LICENSE
 ├── README.md
 ├── include/
 │   └── roster.hpp
@@ -35,9 +36,13 @@ RosterFlow/
     └── players.csv
 ```
 
-تم استبدال الأسماء القديمة مثل `DrTaqreadFinal.cpp` و`Source1.cpp` و`Declareation.h` بأسماء تصف المسؤولية البرمجية مباشرة. وهذا يجعل المشروع أسهل في القراءة والتقييم والصيانة.
+The original generic filenames such as `DrTaqreadFinal.cpp`, `Source1.cpp`, and `Declareation.h` were replaced with descriptive names that communicate each file's responsibility. This makes the project easier to read, assess, maintain, and extend.
 
-## التشغيل على Linux أو macOS
+## Requirements
+
+The project requires a C++17-compatible compiler and CMake 3.16 or newer.
+
+## Build and Run on Linux or macOS
 
 ```bash
 cmake -S . -B build -DBUILD_TESTING=ON
@@ -46,18 +51,16 @@ ctest --test-dir build --output-on-failure
 ./build/rosterflow
 ```
 
-## التشغيل على Windows
+## Build on Windows
 
-يمكن فتح المشروع عبر Visual Studio باستخدام CMake أو تشغيل أوامر CMake نفسها من PowerShell بعد تثبيت CMake ومترجم C++ مناسب.
+Open the repository in Visual Studio with CMake support, or run the same CMake commands from PowerShell after installing CMake and a C++ compiler.
 
-## ملاحظات التصميم
+## Design Notes
 
-يستخدم المشروع C++17، ويفصل بين تعريفات النطاق العام في `include/roster.hpp` والتنفيذ في `src/roster.cpp` وواجهة الاستخدام في `src/main.cpp`. كما يتجنب الملفات التنفيذية الناتجة وملفات البناء داخل Git، مع إبقاء ملف CSV النموذجي جزءاً من المستودع حتى يبدأ التطبيق ببيانات قابلة للتجربة.
+The project uses C++17 and separates public declarations in `include/roster.hpp`, implementation logic in `src/roster.cpp`, and the command-line interface in `src/main.cpp`. Generated binaries and build artifacts are excluded from Git, while the sample CSV file remains versioned so the application starts with usable demonstration data.
 
-## حقوق ونسبة العمل
+## Author and License
 
-تمت إعادة تنظيم المشروع وتطويره من النسخة التعليمية الأصلية إلى **RosterFlow** مع الحفاظ على الفكرة الأساسية المتعلقة بهياكل البيانات، وإضافة طبقة خدمة وواجهة تشغيل وتخزين دائم واختبارات تلقائية.
+**Author:** taha deab
 
-**المؤلف:** taha deab
-
-المشروع مرخص بموجب [MIT License](LICENSE).
+This project is distributed under the [MIT License](LICENSE).

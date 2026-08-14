@@ -1,4 +1,4 @@
-# RosterFlow
+# RosterFlow — Team Roster Management System
 
 **RosterFlow** is a practical command-line roster management system built with modern C++. It demonstrates how core data structures can support a real team-management workflow instead of remaining isolated classroom examples.
 

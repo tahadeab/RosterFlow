@@ -21,22 +21,25 @@ void menu() { line(); std::cout << "RosterFlow | Team Roster Management System\n
 }
 
 int main() {
-    RosterService service; std::string error; service.loadCsv("data/players.csv", error);
+    RosterService service; std::string error;
+    if (service.loadCsv("data/players.csv", error)) std::cout << "Existing roster data loaded automatically.\n";
+    else std::cout << "Starting with an empty roster: " << error << "\n";
+    auto autosave = [&]() { std::string saveError; if (!service.saveCsv("data/players.csv", saveError)) std::cout << "Automatic save failed: " << saveError << "\n"; };
     std::cout << "\nWelcome to RosterFlow\nManage your team roster with practical and reliable data structures.\n";
     while (true) {
         menu(); int choice = readInt("Choose an operation: ");
         if (choice == 0) break;
         if (choice == 1) printTable(service.players());
-        else if (choice == 2) { Player p; p.number = readInt("Shirt number: "); p.name = readText("Player name: "); p.age = readInt("Age: "); p.nationality = readText("Nationality: "); p.position = readText("Position: "); p.priority = readInt("Priority (1-10): "); if (service.addPlayer(p, error)) std::cout << "Player added successfully.\n"; else std::cout << error << "\n"; }
+        else if (choice == 2) { Player p; p.number = readInt("Shirt number: "); p.name = readText("Player name: "); p.age = readInt("Age: "); p.nationality = readText("Nationality: "); p.position = readText("Position: "); p.priority = readInt("Priority (1-10): "); if (service.addPlayer(p, error)) { autosave(); std::cout << "Player added successfully and saved automatically.\n"; } else std::cout << error << "\n"; }
         else if (choice == 3) { const auto* p = service.findPlayer(readInt("Shirt number: ")); if (p) printTable({*p}); else std::cout << "Player not found.\n"; }
-        else if (choice == 4) { if (service.removePlayer(readInt("Player number to remove: "), error)) std::cout << "Player removed successfully.\n"; else std::cout << error << "\n"; }
-        else if (choice == 5) { int number = readInt("Player number: "); int priority = readInt("New priority (1-10): "); if (service.updatePriority(number, priority, error)) std::cout << "Priority updated successfully.\n"; else std::cout << error << "\n"; }
+        else if (choice == 4) { if (service.removePlayer(readInt("Player number to remove: "), error)) { autosave(); std::cout << "Player removed successfully and saved automatically.\n"; } else std::cout << error << "\n"; }
+        else if (choice == 5) { int number = readInt("Player number: "); int priority = readInt("New priority (1-10): "); if (service.updatePriority(number, priority, error)) { autosave(); std::cout << "Priority updated successfully and saved automatically.\n"; } else std::cout << error << "\n"; }
         else if (choice == 6) printTable(service.priorityQueue());
         else if (choice == 7) { const auto* p = service.nextPriorityPlayer(); if (p) printTable({*p}); else std::cout << "The priority queue is empty.\n"; }
-        else if (choice == 8) { if (service.undoLastAddition(error)) std::cout << "The last addition was undone.\n"; else std::cout << error << "\n"; }
+        else if (choice == 8) { if (service.undoLastAddition(error)) { autosave(); std::cout << "The last addition was undone and saved automatically.\n"; } else std::cout << error << "\n"; }
         else if (choice == 9) { if (service.saveCsv("data/players.csv", error)) std::cout << "Data saved to data/players.csv.\n"; else std::cout << error << "\n"; }
         else if (choice == 10) { if (service.loadCsv("data/players.csv", error)) std::cout << "Data loaded successfully.\n"; else std::cout << error << "\n"; }
         else std::cout << "Unknown option.\n";
     }
-    service.saveCsv("data/players.csv", error); std::cout << "Data saved. Goodbye.\n"; return 0;
+    autosave(); std::cout << "Data saved. Goodbye.\n"; return 0;
 }

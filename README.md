@@ -14,7 +14,7 @@ RosterFlow helps a coach or team administrator maintain a player roster, search 
 | Doubly linked list | Preserve roster order and support linked-node operations |
 | Priority queue | Select the next player according to priority |
 | Action stack | Undo the most recent player addition |
-| CSV persistence | Save and reload roster data between sessions |
+| CSV persistence | Automatically save changes and reload roster data between sessions |
 | Input validation | Prevent duplicate numbers and invalid core values |
 | CMake build | Provide a portable build workflow for supported C++ environments |
 
@@ -55,9 +55,13 @@ ctest --test-dir build --output-on-failure
 
 Open the repository in Visual Studio with CMake support, or run the same CMake commands from PowerShell after installing CMake and a C++ compiler.
 
+## API Documentation
+
+Detailed public API reference is available in [`docs/API.md`](docs/API.md), including data models, class methods, validation rules, persistence behavior, error handling, and usage examples.
+
 ## Design Notes
 
-The project uses C++17 and separates public declarations in `include/roster.hpp`, implementation logic in `src/roster.cpp`, and the command-line interface in `src/main.cpp`. Generated binaries and build artifacts are excluded from Git, while the sample CSV file remains versioned so the application starts with usable demonstration data.
+The project uses C++17 and separates public declarations in `include/roster.hpp`, implementation logic in `src/roster.cpp`, and the command-line interface in `src/main.cpp`. Generated binaries and build artifacts are excluded from Git, while the sample CSV file remains versioned so the application starts with usable demonstration data. The command-line application loads this file automatically at startup, saves after successful mutations, and performs a final save on exit.
 
 ## Author and License
 
